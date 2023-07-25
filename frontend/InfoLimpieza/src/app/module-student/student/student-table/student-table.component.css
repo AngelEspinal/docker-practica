@@ -1,0 +1,13 @@
+table {
+  width: 100%;
+}
+.delete
+{
+  color: rgb(214, 28, 28);
+  cursor: pointer;
+}
+.edit
+{
+  color: rgb(34, 147, 161);
+  cursor: pointer;
+}

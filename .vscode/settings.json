@@ -1,0 +1,4 @@
+{
+    "dotnet.defaultSolution": "backend\\Alumnos\\Alumnos\\Alumnos.sln",
+    "totvsLanguageServer.welcomePage": false
+}

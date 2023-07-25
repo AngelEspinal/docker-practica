@@ -1,0 +1,58 @@
+version: '3.9'
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: db
+    hostname: db
+    restart: always  # Configuración para reinicio automático
+    networks:
+      - InfoNetwork
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=@ngelXXR1999
+    volumes:
+      - dbdata:/var/opt/mssql
+    ports:
+      - 14033:1433
+
+    # Configuración adicional para la base de datos
+
+  api:
+    build: ./backend
+    container_name: api
+    hostname: api
+    restart: always  # Configuración para reinicio automático
+    environment:
+      - DB_USERNAME= sa
+      - DB_PASSWORD= @ngelXXR1999
+    networks:
+      - InfoNetwork
+    ports:
+      - 8000:80
+    # Configuración adicional para el backend
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    hostname: frontend
+    restart: always  # Configuración para reinicio automático
+    networks:
+      - InfoNetwork
+    ports:
+      - 9000:80
+    # Configuración adicional para el backend
+  nginx: 
+    build: ./nginx
+    #image: nginx:alpine
+    container_name: nginx
+    restart: always
+    networks:
+      - InfoNetwork
+    ports:
+      - 80:80
+
+networks:
+  InfoNetwork:
+    # Configuración de la red
+volumes:
+  dbdata:
+
